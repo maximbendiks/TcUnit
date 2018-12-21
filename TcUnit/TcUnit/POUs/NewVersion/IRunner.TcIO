@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <Itf Name="IRunner" Id="{7785b053-0144-45ae-90de-76fa438cd345}">
+    <Declaration><![CDATA[INTERFACE IRunner
+]]></Declaration>
+    <Method Name="registerTestSuite" Id="{1614c136-9cec-47d8-8bb5-5e9b535bff2a}">
+      <Declaration><![CDATA[METHOD registerTestSuite
+VAR_INPUT
+    testSuite: ITestSuite;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="UnitTest" Id="{ea4359ae-5c6a-467c-98f8-171e8d268a16}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK UnitTest
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    _testSuite: ITestSuite;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{6b3fd7b1-247d-4dbb-a886-62531fb1251a}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    _testSuite: ITestSuite;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._testSuite := _testSuite;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="testSuite" Id="{db19b493-ce6b-492a-a438-736ac3fb3ae0}">
+      <Declaration><![CDATA[PROPERTY testSuite : ITestSuite]]></Declaration>
+      <Get Name="Get" Id="{01b8d9d6-5b50-44e1-a44e-4b20f2c38f41}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[testSuite := THIS^._testSuite;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{1281dcda-0757-4b75-94fd-4c5618ba9b5d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <LineIds Name="UnitTest">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTest.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTest.testSuite.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTest.testSuite.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

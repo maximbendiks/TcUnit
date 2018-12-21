@@ -43,6 +43,7 @@ Documentation and examples are available at www.tcunit.org</Description>
     <Folder Include="GVLs" />
     <Folder Include="POUs" />
     <Folder Include="POUs\Functions" />
+    <Folder Include="POUs\NewVersion" />
     <Folder Include="Version" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +116,21 @@ Documentation and examples are available at www.tcunit.org</Description>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Functions\TEST.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\NewVersion\IRunner.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\NewVersion\ITestSuite.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\NewVersion\UnitTest.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\NewVersion\UnitTestRunner.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\NewVersion\UnitTestSuite.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Version\Global_Version.TcGVL">

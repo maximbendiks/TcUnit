@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="UnitTestSuite" Id="{fe97e91c-7ea9-4c83-a6e3-45e067042918}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK UnitTestSuite IMPLEMENTS ITestSuite
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{6ad6c7a2-2aa4-4197-9227-87f1926f6871}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    runner: IRunner;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF runner <> 0 THEN
+    runner.registerTestSuite(THIS^);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="numberOfTests" Id="{8abaee9b-1eb4-4cf9-a836-6101c4e20522}">
+      <Declaration><![CDATA[PROPERTY numberOfTests : UINT]]></Declaration>
+      <Get Name="Get" Id="{fd155758-ca70-448f-a471-32b64a788719}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="runAllTests" Id="{88ad9ea3-be1c-411e-8994-768e609c8491}">
+      <Declaration><![CDATA[{warning 'add method implementation'}
+METHOD runAllTests
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="UnitTestSuite">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTestSuite.FB_init">
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="1" />
+    </LineIds>
+    <LineIds Name="UnitTestSuite.numberOfTests.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTestSuite.runAllTests">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="UnitTestRunner" Id="{3037e080-9321-446b-b115-077ca09a8178}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK UnitTestRunner IMPLEMENTS IRunner
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    testSuites: ARRAY [0..10] OF ITestSuite;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="numberOfTestSuites" Id="{69763f75-f9ae-48ad-b38b-91669c6f8622}">
+      <Declaration><![CDATA[PROPERTY numberOfTestSuites : UINT]]></Declaration>
+      <Get Name="Get" Id="{dbe5fc45-3eb6-4b00-9d8b-b2fe05ff8daa}">
+        <Declaration><![CDATA[VAR
+    i: INT;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[numberOfTestSuites := 0;
+FOR i:=0 TO 10 DO
+    IF THIS^.testSuites[i] <> 0 THEN
+        numberOfTestSuites := numberOfTestSuites + 1;
+    ELSE
+        EXIT;
+	END_IF
+END_FOR]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="registerTestSuite" Id="{9a359b67-3d70-4fc5-8498-38bc8aec6f8b}">
+      <Declaration><![CDATA[METHOD registerTestSuite
+VAR_INPUT
+    testSuite: ITestSuite;
+END_VAR
+VAR
+    i: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i:=0 TO 10 DO
+    IF THIS^.testSuites[i] = testSuite THEN
+        EXIT;
+	END_IF
+    IF THIS^.testSuites[i] = 0 THEN
+        THIS^.testSuites[i] := testSuite;
+        EXIT;
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="runAllTests" Id="{3d38c77b-c7eb-45cc-82bd-431fcedeb6a9}">
+      <Declaration><![CDATA[METHOD runAllTests
+VAR
+    i: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i:=0 TO 10 DO
+    IF testSuites[i] = 0 THEN
+        EXIT;
+	END_IF
+    testSuites[i].runAllTests();
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="UnitTestRunner">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTestRunner.numberOfTestSuites.Get">
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTestRunner.registerTestSuite">
+      <LineId Id="7" Count="0" />
+      <LineId Id="16" Count="2" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTestRunner.runAllTests">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="2" />
+      <LineId Id="8" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
