@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="UnitTestPrinter" Id="{c8b5c401-57cf-4e84-8c94-4746649c8d15}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK UnitTestPrinter
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    messageBuilder: SimpleStringBuilder;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="getFailureMessage" Id="{9dc6d79a-5505-4a87-87c3-d856af6043df}">
+      <Declaration><![CDATA[METHOD getFailureMessage : MaxString
+VAR_INPUT
+    expected: ANY;
+    actual: ANY;
+    message: MaxString;
+    path: MaxString;
+END_VAR
+VAR
+    messageToAppend: MaxString;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[messageToAppend := 'FAILED TEST $'';
+messageBuilder.append(messageToAppend);
+messageBuilder.append(path);
+messageToAppend := '$', EXP: ';
+messageBuilder.append(messageToAppend);
+messageBuilder.append(expected);
+messageToAppend := ', ACT: ';
+messageBuilder.append(messageToAppend);
+messageBuilder.append(actual);
+messageToAppend := ', MSG: ';
+messageBuilder.append(messageToAppend);
+messageBuilder.append(message);
+
+getFailureMessage := messageBuilder.toString();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="printFailure" Id="{af4e89be-6949-40ab-9696-5dfe4e50e8cf}">
+      <Declaration><![CDATA[METHOD printFailure
+VAR_INPUT
+    expected: MaxString;
+    actual: MaxString;
+    message: MaxString;
+    path: MaxString;
+END_VAR
+VAR
+    failureMessage: MaxString;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[failureMessage := getFailureMessage(expected, actual, message, path);]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="UnitTestPrinter">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTestPrinter.getFailureMessage">
+      <LineId Id="6" Count="10" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+    </LineIds>
+    <LineIds Name="UnitTestPrinter.printFailure">
+      <LineId Id="18" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="anyToString" Id="{ac8c30cd-67ee-4e25-b911-ae2d14e6a975}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION anyToString : MaxString
+VAR_INPUT
+  toTransform: ANY;
+END_VAR
+VAR
+  intPtr: POINTER TO INT;
+  realPtr: POINTER TO REAL;
+  stringPtr: POINTER TO STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE UDINT_TO_INT(toTransform.TypeClass) OF
+TypeClass.TYPE_INT:
+  intPtr := toTransform.pValue;
+  anyToString := TO_STRING(intPtr^);
+TypeClass.TYPE_REAL:
+  realPtr := toTransform.pValue;
+  anyToString := TO_STRING(realPtr^);
+TypeClass.TYPE_STRING:
+  stringPtr := toTransform.pValue;
+  anyToString := stringPtr^;
+ELSE
+  anyToString := '';
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="anyToString">
+      <LineId Id="17" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="16" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

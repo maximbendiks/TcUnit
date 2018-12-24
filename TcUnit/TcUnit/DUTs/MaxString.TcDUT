@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <DUT Name="MaxString" Id="{24fb4e5b-aefa-4bdd-8414-9e6a91f82571}">
+    <Declaration><![CDATA[TYPE MaxString : STRING(255); END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

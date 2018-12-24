@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="SimpleStringBuilder" Id="{cc99bb83-4475-4381-a1e6-019c3040615d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SimpleStringBuilder
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    builderString: MaxString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="append" Id="{10d89456-de3c-4857-aa02-74792456d045}">
+      <Declaration><![CDATA[METHOD append
+VAR_INPUT
+    toAppend: ANY;
+END_VAR
+VAR
+    strToAppend: MaxString;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[strToAppend := anyToString(toAppend);
+builderString := CONCAT(builderString, strToAppend);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="toString" Id="{b2564f72-8c64-4416-a1f7-a47045c1cdb0}">
+      <Declaration><![CDATA[METHOD toString : MaxString]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[toString := builderString;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="SimpleStringBuilder">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="SimpleStringBuilder.append">
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="SimpleStringBuilder.toString">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
